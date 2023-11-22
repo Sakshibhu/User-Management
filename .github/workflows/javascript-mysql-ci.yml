@@ -1,4 +1,4 @@
-name: Node.js CI with MySQL
+name: Javascript CI with MySQL
 
 on:
   push:
@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql:
-        image: mysql:latest
+    #  mysql:
+     #   image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: qwerty@123
           MYSQL_DATABASE: myform
