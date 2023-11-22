@@ -1,0 +1,46 @@
+name: Node.js CI with MySQL
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: qwerty@123
+          MYSQL_DATABASE: myform
+          MYSQL_USER: root
+          MYSQL_PASSWORD: qwerty@123
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Wait for MySQL to be ready
+      run: |
+        npm install -g wait-on
+        wait-on tcp:localhost:3306
+
+   # - name: Run tests
+    #  run: npm test
