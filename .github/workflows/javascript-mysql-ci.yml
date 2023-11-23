@@ -16,7 +16,6 @@ jobs:
       mysql:
         image: mysql:latest
         env:
-          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: myform
           MYSQL_USER: root
           MYSQL_PASSWORD: qwerty@123
