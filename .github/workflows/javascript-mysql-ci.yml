@@ -1,4 +1,4 @@
-name: Javascript CI with MySQL
+name: Node.js CI
 
 on:
   push:
@@ -9,8 +9,7 @@ on:
       - main
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
     services:
@@ -23,7 +22,6 @@ jobs:
           MYSQL_PASSWORD: qwerty@123
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - name: Checkout repository
@@ -38,9 +36,7 @@ jobs:
       run: npm install
 
     - name: Wait for MySQL to be ready
-      run: |
-        npm install -g wait-on
-        wait-on tcp:localhost:3306
+      run: npx wait-on tcp:localhost:3306
 
    # - name: Run tests
     #  run: npm test
