@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-    #  mysql:
-     #   image: mysql:latest
+      mysql:
+        image: mysql:latest
         env:
-          MYSQL_ROOT_PASSWORD: qwerty@123
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: myform
           MYSQL_USER: root
           MYSQL_PASSWORD: qwerty@123
