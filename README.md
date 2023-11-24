@@ -1,2 +1,2 @@
 
-### Javascript-MySQL 
+### Javascript-MySQL code 
